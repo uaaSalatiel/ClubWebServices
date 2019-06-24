@@ -21,7 +21,7 @@
             <p>Contacto: {{user.correo}}</p>
           </div>
           <br>
-          <div>
+          <div *ngIf="user.id.toString() != id_logged">
             <button mat-raised-button color="accent" (click)="solicitud(user.id,id_logged)">Solicitud de Amistad</button>
           </div>
         </mat-card>
@@ -33,15 +33,15 @@
         <mat-card>
           <mat-card-header>
             <div mat-card-avatar class="avatar"></div>
-            <mat-card-title class="titles">{{user.nombres}} {{user.apellidos}}</mat-card-title>
-            <mat-card-subtitle>Fecha de Nacimiento: {{user.fec_nac}}</mat-card-subtitle>
+            <mat-card-title class="titles">{{friend.nombres}} {{friend.apellidos}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Nacimiento: {{friend.fec_nac}}</mat-card-subtitle>
           </mat-card-header>
           <div>
-            <p>Contacto: {{user.correo}}</p>
+            <p>Contacto: {{friend.correo}}</p>
           </div>
           <br>
           <div>
-            <button mat-raised-button color="warn" (click)="eliminar(user.id,id_logged)">Solicitud de Amistad</button>
+            <button mat-raised-button color="warn" (click)="eliminar(friend.id,id_logged)">Eliminar Amistad</button>
           </div>
         </mat-card>
         <br>
@@ -52,16 +52,16 @@
         <mat-card>
           <mat-card-header>
             <div mat-card-avatar class="avatar"></div>
-            <mat-card-title class="titles">{{user.nombres}} {{user.apellidos}}</mat-card-title>
-            <mat-card-subtitle>Fecha de Nacimiento: {{user.fec_nac}}</mat-card-subtitle>
+            <mat-card-title class="titles">{{sol.nombres}} {{sol.apellidos}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Nacimiento: {{sol.fec_nac}}</mat-card-subtitle>
           </mat-card-header>
           <div>
-            <p>Contacto: {{user.correo}}</p>
+            <p>Contacto: {{sol.correo}}</p>
           </div>
           <br>
           <div>
-            <button mat-raised-button color="accent" (click)="aceptar(user.id,id_logged)">Aceptar Solicitud</button>
-            <button mat-raised-button color="warn" (click)="eliminar(user.id,id_logged)">Denegar Solicitud</button>
+            <button mat-raised-button color="accent" (click)="aceptar(sol.id,id_logged)">Aceptar Solicitud</button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button color="warn" (click)="eliminar(sol.id,id_logged)">Denegar Solicitud</button>
           </div>
         </mat-card>
         <br>

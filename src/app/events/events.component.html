@@ -20,14 +20,13 @@
           <mat-card-title class="titles">{{evn.nombre}}</mat-card-title>
           <mat-card-subtitle>Fecha: {{evn.fecha}}</mat-card-subtitle>
         </mat-card-header>
-        <p>Descripción: <br> {{evn.descripcion}}</p>
+        <img src="assets/img/evento.jpg" alt="Grandes Actividades">
+        <p>{{evn.descripcion}}</p>
         <p>El evento empieza a las: {{evn.time}}</p>
         <button mat-raised-button color="primary" (click)="asistencia(evn.id,id_logged)">Participar</button>
         <br>
         <div *ngIf="is_admin=='S'">
-            <button mat-raised-button color="accent" (click)="updateEv(evn.id)">Actualizar Evento</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <button mat-raised-button color="warn" (click)="borrarEv(evn.id)">Borrar Evento</button>
+          <button mat-raised-button color="warn" (click)="borrarEv(evn.id)">Borrar Evento</button>
         </div>
       </mat-card>
       <br>
@@ -40,9 +39,10 @@
           <mat-card-title class="titles">{{msv.nombre}}</mat-card-title>
           <mat-card-subtitle>Fecha: {{msv.fecha}}</mat-card-subtitle>
         </mat-card-header>
-        <p>Descripción: <br> {{msv.descripcion}}</p>
+        <img src="assets/img/evento.jpg" alt="Grandes Actividades">
+        <p>{{msv.descripcion}}</p>
         <p>El evento empieza a las: {{msv.time}}</p>
-        <button mat-raised-button color="primary" (click)="declinar(msv.id,id_logged)">Declinar</button>
+        <button mat-raised-button color="warn" (click)="declinar(msv.id,id_logged)">Declinar</button>
       </mat-card>
       <br>
     </div>

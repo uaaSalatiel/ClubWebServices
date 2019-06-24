@@ -17,16 +17,15 @@ import { Menu } from './classes/menu';
 })
 
 export class WebServsService {
-  PHP_API_SERVER_1 = "http://127.0.0.1:8080"; //"http://192.168.0.15:8080";
-  PHP_API_SERVER_2 = "http://127.0.0.1:8080"; //"http://192.168.0.4:8080";
+  PHP_API_SERVER_1 = "http://192.168.0.9:8080";
+  PHP_API_SERVER_2 = "http://192.168.0.4:8080";
 
   constructor(private httpClient: HttpClient) { }
 
 //-------------------------------USUARIOS-------------------------------------------
 
   loginToUser(correo:string, contrasena:string): Observable<Usuario>{
-    //return this.httpClient.get<Usuario>(`${this.PHP_API_SERVER_2}/api/Login.php/?correo=${correo}&contrasena=${contrasena}`);
-    return this.httpClient.get<Usuario>(`${this.PHP_API_SERVER_2}/api/read.php/?correo=${correo}&contrasena=${contrasena}`);
+    return this.httpClient.get<Usuario>(`${this.PHP_API_SERVER_2}/api/Login.php/?correo=${correo}&contrasena=${contrasena}`);
   }
 
   readLogged(usr:string): Observable<Usuario>{
@@ -53,7 +52,7 @@ export class WebServsService {
   }
 
   readOneEvento(id:number): Observable<Evento>{
-    return this.httpClient.get<Evento>(`${this.PHP_API_SERVER_2}/api/readOneEvento.php/?id_ev=${id}`);
+    return this.httpClient.get<Evento>(`${this.PHP_API_SERVER_2}/api/consultaEvento.php/?id=${id}`);
   }
 
   readMisEvento(id: string): Observable<Evento[]>{
@@ -87,7 +86,7 @@ export class WebServsService {
   }
 
   readFriends(usr:string): Observable<Usuario[]>{
-    return this.httpClient.get<Usuario[]>(`${this.PHP_API_SERVER_2}/api/readAmigos.php/?id=${usr}`);
+    return this.httpClient.get<Usuario[]>(`${this.PHP_API_SERVER_2}/api/readAmigo.php/?id=${usr}`);
   }
 
   readSolicy(usr:string): Observable<Usuario[]>{
@@ -95,15 +94,15 @@ export class WebServsService {
   }
 
   createSol(amg: Amigo): Observable<Amigo>{
-    return this.httpClient.post<Amigo>(`${this.PHP_API_SERVER_2}/api/createUsuario.php`, amg);
+    return this.httpClient.post<Amigo>(`${this.PHP_API_SERVER_2}/api/createAmigo.php`, amg);
   }
 
   aceptSol(amg: Amigo){
-    return this.httpClient.put<Amigo>(`${this.PHP_API_SERVER_2}/api/update.php`, amg);   
+    return this.httpClient.put<Amigo>(`${this.PHP_API_SERVER_2}/api/updateAmigo.php`, amg);   
   }
 
   elimAmg(id1: string, id2: string){
-    return this.httpClient.delete<Amigo>(`${this.PHP_API_SERVER_2}/api/delete.php/?id_usr1=${id1}&id_usr2=${id2}`);
+    return this.httpClient.delete<Amigo>(`${this.PHP_API_SERVER_2}/api/deleteAmigo.php/?id_usr1=${id1}&id_usr2=${id2}`);
   }
 
   //----------------------------ACTIVIDADES-------------------------------------
@@ -166,8 +165,8 @@ export class WebServsService {
     return this.httpClient.post<Reserva>(`${this.PHP_API_SERVER_1}/api/agrega_reserva.php`, rest);
   }
 
-  readReserva(): Observable<Reserva[]>{
-    return this.httpClient.get<Reserva[]>(`${this.PHP_API_SERVER_1}/api/consulta_reserva.php`);
+  readReserva(id:string): Observable<Reserva[]>{
+    return this.httpClient.get<Reserva[]>(`${this.PHP_API_SERVER_1}/api/consulta_reserva.php/?id_usr=${id}`);
   }
 
   deleteReserva(id_res: number, id_usr: string, fecha: string){

@@ -54,6 +54,7 @@ export class FriendsComponent implements OnInit {
     this.fr = {id_usr1:am,id_usr2:us,estado:"N"};
     this.service.createSol(this.fr).subscribe((amg: Amigo) =>{
       console.log("Amistad Solicitada, ", amg);
+      this.leerSolicitudes();
     });
   }
 

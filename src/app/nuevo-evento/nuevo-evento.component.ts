@@ -34,7 +34,7 @@ export class NuevoEventoComponent implements OnInit {
   }
 
   registerUpdateEvent(nvEv){
-    if(nvEv.value.id_menu == 0){
+    if(nvEv.value.id == 0){
       this.service.newEvento(nvEv.value).subscribe((ev: Evento)=>{
         console.log('Evento Creado', ev);
       });

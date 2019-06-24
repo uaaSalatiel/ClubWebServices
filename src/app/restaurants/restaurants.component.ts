@@ -38,7 +38,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   leerReservas(){
-    this.service.readReserva().subscribe((resr: Reserva[])=>{
+    this.service.readReserva(this.id_logged).subscribe((resr: Reserva[])=>{
       this.reservas = resr;
       console.log(this.reservas);
     });

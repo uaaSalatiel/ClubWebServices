@@ -43,9 +43,10 @@
             <br>
             <button mat-raised-button color="primary" (click)="reservation(reserv,rest.id_res)">Reservar</button>
           </form>
-          
-          <button mat-raised-button color="warn" (click)="deleteRest(rest.id_res)">Eliminar</button>
         </div>
+          <div *ngIf="is_admin=='S'">
+            <button mat-raised-button color="warn" (click)="deleteRest(rest.id_res)">Eliminar</button>
+          </div>
       </mat-card>
     </div>
 
@@ -53,7 +54,7 @@
   <mat-tab label="Menús">
     
     <div *ngIf="is_admin=='S'">
-      <button mat-raised-button color="primary" [routerLink]="['/newDish']">Nuevo Platillo</button>
+      <button mat-raised-button color="primary" [routerLink]="['/newDish']">Nuevo/Mod Platillo</button>
       <br><br>
     </div>
     <div *ngFor="let men of menus">
@@ -67,7 +68,9 @@
           <p style="font-size: 20px;">Precio: $ {{men.precio}}</p>
           <p>{{men.descripcion}}</p> 
         </div>
-        <button mat-raised-button color="warn" (click)="deleteMenu(men.id_menu)">Eliminar</button>
+        <div *ngIf="is_admin=='S'">
+          <button mat-raised-button color="warn" (click)="deleteMenu(men.id_menu)">Eliminar</button>
+        </div>
       </mat-card>
       <br><br>
     </div>
@@ -86,9 +89,10 @@
             <p style="font-size: 30px;">Hora de Reserva: {{res.hora}}</p>
         </div><br>
         <div>
-          <button mat-raised-button color="warn" (click)=deleteResr(res)>Quitar</button>
+          <button mat-raised-button color="warn" (click)=deleteResr(res)>Declinar Reserva</button>
         </div>
       </mat-card>
+      <br><br>
     </div>
   </mat-tab>
 </mat-tab-group>
