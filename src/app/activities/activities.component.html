@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <span>Actividades</span>
+  <span class="espacio"></span>
+  <a routerLink='/updateuser'><mat-icon class="iconos" aria-hidden="false" aria-label="perfil">verified_user</mat-icon></a>
+  <a routerLink='/friends'><mat-icon class="iconos" aria-hidden="false" aria-label="Amigos">people</mat-icon></a>
+  <a routerLink='/events'><mat-icon class="iconos" aria-hidden="false" aria-label="Eventos">card_membership</mat-icon></a>
+  <a routerLink='/restaurants'><mat-icon class="iconos" aria-hidden="false" aria-label="Restaurantes">restaurant</mat-icon></a>
+  <a (click)='logOut()'><mat-icon class="iconos" aria-hidden="false" aria-label="Logout">work_off</mat-icon></a>
+</mat-toolbar>
+<div class="data">
+<mat-tab-group>
+  <mat-tab label="Actividades Disponibles"> 
+    <div *ngIf="is_admin=='S'">
+      <button mat-raised-button color="primary" [routerLink]="['/newActivity']">Nueva/Mod Actividad</button>
+      <br><br>
+    </div>
+    <div *ngFor="let act of actividades">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="titles">{{act.nombre}}</mat-card-title>
+          <mat-card-subtitle>Descripción: {{act.descripcion}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="assets/img/actividad.jpg" alt="Grandes Actividades">
+        <div>
+          Días disponibles: 
+          <div *ngIf="act.lunes==1">Lunes</div>
+          <div *ngIf="act.martes==1">Martes</div>
+          <div *ngIf="act.miercoles==1">Miercoles</div>
+          <div *ngIf="act.jueves==1">Jueves</div>
+          <div *ngIf="act.viernes==1">Viernes</div>
+          <div *ngIf="act.sabado==1">Sabado</div>
+          <div *ngIf="act.domingo==1">Domingo</div>
+        </div>
+        <br>
+        <div>
+        <button mat-raised-button color="primary" (click)="asistencia(act.id_act,id_logged)">Participar</button>
+        </div>
+        <div *ngIf="is_admin=='S'">
+            <button mat-raised-button color="warn" (click)="borrarAc(act.id_act)">Borrar Actividad</button>
+        </div>
+      </mat-card>
+      <br>
+  </div>
+  </mat-tab>
+  <mat-tab label="Mis Actividades">
+    <div *ngFor="let mact of msactiv">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="titles">{{mact.nombre}}</mat-card-title>
+          <mat-card-subtitle>Descripción: {{mact.descripcion}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="assets/img/actividad.jpg" alt="Grandes Actividades">
+        <div>
+          Días disponibles: 
+          <div *ngIf="mact.lunes==1">Lunes</div>
+          <div *ngIf="mact.martes==1">Martes</div>
+          <div *ngIf="mact.miercoles==1">Miercoles</div>
+          <div *ngIf="mact.jueves==1">Jueves</div>
+          <div *ngIf="mact.viernes==1">Viernes</div>
+          <div *ngIf="mact.sabado==1">Sabado</div>
+          <div *ngIf="mact.domingo==1">Domingo</div>
+        </div>
+        <br>
+        <div>
+          <button mat-raised-button color="warn" (click)="declinar(mact.id_act,id_logged)">Declinar</button>
+        </div>
+      </mat-card>
+      <br>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</div>

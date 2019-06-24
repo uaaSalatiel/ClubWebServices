@@ -1,0 +1,43 @@
+<mat-card class="newform">
+    <mat-card-header>
+        <mat-card-title class="titles">Registro de Restaurante</mat-card-title>
+        <mat-card-subtitle>¡Solo Administradores!</mat-card-subtitle>
+      </mat-card-header>
+
+    <form #nvRest="ngForm">
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Restaurante</mat-label>
+        <mat-select name="id_res" required [(ngModel)]="rst.id_res">
+          <mat-option value="0">Nuevo Restaurante</mat-option>
+          <mat-option *ngFor="let rsst of restaurants" (click)="readRest(rsst.id_res)" [value]="rsst.id_res">
+            {{rsst.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre del Restaurante" name="nombre" required [(ngModel)]="rst.nombre">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Ubicación</mat-label>
+        <input matInput placeholder="Ubicación del Restaurante" name="ubicacion" required [(ngModel)]="rst.ubicacion">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Hora de apertura</mat-label>
+        <input matInput placeholder="En formato HH:MM" name="hora_ini" required [(ngModel)]="rst.hora_ini">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Hora de Cierre</mat-label>
+        <input matInput placeholder="En formato HH:MM" name="hora_fin" required [(ngModel)]="rst.hora_fin">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="registerUpdateRest(nvRest)">Añadir/Actualizar Restaurante</button>
+      
+    </form><br>
+
+    <button mat-raised-button color="primary" [routerLink]="['/restaurants']">Regresar</button>
+</mat-card>

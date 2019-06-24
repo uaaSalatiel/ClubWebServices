@@ -1,0 +1,43 @@
+<mat-card class="login-form">
+    <mat-card-header>
+        <mat-card-title class="titles">Registro a ClubApp</mat-card-title>
+        <mat-card-subtitle>¡Tus datos serán revisados!</mat-card-subtitle>
+      </mat-card-header>
+
+    <form #regs="ngForm">
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="Agrega tu correo electrónico" name="correo" required ngModel>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Agrega tus nombres" name="nombres" required ngModel>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Apellidos</mat-label>
+          <input matInput placeholder="Agrega tus apellidos" name="apellidos" required ngModel>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="Agrega una contraseña" name="contrasena" type="password" required ngModel>
+      </mat-form-field>
+
+      <mat-checkbox name="admin" required ngModel>Administrador</mat-checkbox>
+      <br>
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Fecha de Inicio</mat-label>
+        <input matInput [matDatepicker]="picker" name="fec_nac" placeholder="Danos tu fecha de nacimiento" required ngModel>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="registerUser(regs)">Registrarte</button>
+      
+    </form>
+
+    ¿Ya tienes una cuenta?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary" [routerLink]="['']">Regresar</button>
+  </mat-card>

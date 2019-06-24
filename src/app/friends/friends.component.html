@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+    <span>Amigos</span>
+    <span class="espacio"></span>
+    <a routerLink='/updateuser'><mat-icon class="iconos" aria-hidden="false" aria-label="perfil">verified_user</mat-icon></a>
+    <a routerLink='/events'><mat-icon class="iconos" aria-hidden="false" aria-label="Eventos">card_membership</mat-icon></a>
+    <a routerLink='/activities'><mat-icon class="iconos" aria-hidden="false" aria-label="Actividades">query_builder</mat-icon></a>
+    <a routerLink='/restaurants'><mat-icon class="iconos" aria-hidden="false" aria-label="Restaurantes">restaurant</mat-icon></a>
+    <a (click)='logOut()'><mat-icon class="iconos" aria-hidden="false" aria-label="Logout">work_off</mat-icon></a>
+</mat-toolbar>
+<div class="data">
+  <mat-tab-group>
+    <mat-tab label="Usuarios Disponibles"> 
+      <div *ngFor="let user of users">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title class="titles">{{user.nombres}} {{user.apellidos}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Nacimiento: {{user.fec_nac}}</mat-card-subtitle>
+          </mat-card-header>
+          <div>
+            <p>Contacto: {{user.correo}}</p>
+          </div>
+          <br>
+          <div>
+            <button mat-raised-button color="accent" (click)="solicitud(user.id,id_logged)">Solicitud de Amistad</button>
+          </div>
+        </mat-card>
+        <br>
+      </div>
+    </mat-tab>
+    <mat-tab label="Amigos">
+      <div *ngFor="let friend of friends">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title class="titles">{{user.nombres}} {{user.apellidos}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Nacimiento: {{user.fec_nac}}</mat-card-subtitle>
+          </mat-card-header>
+          <div>
+            <p>Contacto: {{user.correo}}</p>
+          </div>
+          <br>
+          <div>
+            <button mat-raised-button color="warn" (click)="eliminar(user.id,id_logged)">Solicitud de Amistad</button>
+          </div>
+        </mat-card>
+        <br>
+      </div>
+    </mat-tab>
+    <mat-tab label="Solicitudes de Amistad">
+      <div *ngFor="let sol of solicy">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title class="titles">{{user.nombres}} {{user.apellidos}}</mat-card-title>
+            <mat-card-subtitle>Fecha de Nacimiento: {{user.fec_nac}}</mat-card-subtitle>
+          </mat-card-header>
+          <div>
+            <p>Contacto: {{user.correo}}</p>
+          </div>
+          <br>
+          <div>
+            <button mat-raised-button color="accent" (click)="aceptar(user.id,id_logged)">Aceptar Solicitud</button>
+            <button mat-raised-button color="warn" (click)="eliminar(user.id,id_logged)">Denegar Solicitud</button>
+          </div>
+        </mat-card>
+        <br>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+  

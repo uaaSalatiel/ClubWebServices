@@ -1,0 +1,43 @@
+<mat-card class="update-form">
+  <mat-card-header>
+      <mat-card-title class="titles">Información de Usuario</mat-card-title>
+      <mat-card-subtitle>¡Tus datos deben ser veraces!</mat-card-subtitle>
+    </mat-card-header>
+  <form #usr="ngForm">
+
+    <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Correo</mat-label>
+        <input matInput name="correo" [(ngModel)]="usrr.correo">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Nombres</mat-label>
+      <input matInput name="nombres" [(ngModel)]="usrr.nombres">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Apellidos</mat-label>
+        <input matInput name="apellidos" [(ngModel)]="usrr.apellidos">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Contraseña</mat-label>
+        <input matInput name="contrasena" type="password" [(ngModel)]="usrr.contrasena">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="data-pick">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" name="fec_nac" [(ngModel)]="usrr.fec_nac">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="updateUser()">Actualizar información</button>
+    <br><br>
+    <button mat-raised-button color="warn" (click)="borrarUser()">Borrar Perfil</button>
+  
+  </form><br>
+  
+  <button mat-raised-button color="primary" [routerLink]="['/friends']">Regresar</button>
+  
+</mat-card>

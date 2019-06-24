@@ -1,0 +1,47 @@
+<mat-card class="newform">
+    <mat-card-header>
+        <mat-card-title class="titles">Registro de Platillos</mat-card-title>
+        <mat-card-subtitle>¡Solo Administradores!</mat-card-subtitle>
+      </mat-card-header>
+
+    <form #nvDsh="ngForm">
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Platillo</mat-label>
+        <mat-select name="id_menu" required [(ngModel)]="menn.id_menu">
+          <mat-option value="0">Nuevo Platillo</mat-option>
+          <mat-option *ngFor="let pl of platillos" (click)="readDish(pl.id_menu)" [value]="pl.id_menu">
+            {{pl.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Agrega nombre del platillo" name="nombre" required [(ngModel)]="menn.nombre">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Precio</mat-label>
+        <input matInput placeholder="Precio del plato" name="precio" required [(ngModel)]="menn.precio">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Precio del plato" name="descripcion" required [(ngModel)]="menn.descripcion"></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Ubicación</mat-label>
+        <mat-select name="id_res" required [(ngModel)]="menn.id_res">
+          <mat-option *ngFor="let rest of restaurants" [value]="rest.id_res">
+            {{rest.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="registerUpdateDish(nvDsh)">Añadir/Actualizar Platillo</button>
+      
+    </form><br>
+
+    <button mat-raised-button color="primary" [routerLink]="['/restaurants']">Regresar</button>
+</mat-card>

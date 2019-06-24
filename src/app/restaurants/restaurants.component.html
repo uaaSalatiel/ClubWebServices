@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">
+  <span>Restaurantes</span>
+  <span class="espacio"></span>
+  <a routerLink='/updateuser'><mat-icon class="iconos" aria-hidden="false" aria-label="perfil">verified_user</mat-icon></a>
+  <a routerLink='/friends'><mat-icon class="iconos" aria-hidden="false" aria-label="Amigos">people</mat-icon></a>
+  <a routerLink='/events'><mat-icon class="iconos" aria-hidden="false" aria-label="Eventos">card_membership</mat-icon></a>
+  <a routerLink='/activities'><mat-icon class="iconos" aria-hidden="false" aria-label="Actividades">query_builder</mat-icon></a>
+  <a (click)='logOut()'><mat-icon class="iconos" aria-hidden="false" aria-label="Logout">work_off</mat-icon></a>
+</mat-toolbar>
+<div class="data">
+<mat-tab-group>
+  <mat-tab label="Restaurantes"> 
+    <div *ngIf="is_admin=='S'">
+      <button mat-raised-button color="primary" [routerLink]="['/newRestaurant']">Nuevo/Mod Restaurante</button>
+      <br><br>
+    </div>
+    <div *ngFor="let rest of restaurants">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="titles">{{rest.nombre}}</mat-card-title>
+          <mat-card-subtitle>Ubicación: {{rest.ubicacion}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="assets/img/restaurante.jpg" alt="Restaurante Buenísimo">
+        <div>
+          Hora de Apertura: {{rest.hora_ini}}<br>
+          Hora de Cierre: {{rest.hora_fin}}
+        </div>
+        <div>
+          <br>
+          <form #reserv="ngForm">
+        
+            <mat-form-field appearance="fill" class="data-pick">
+              <mat-label>Fecha de Reserva</mat-label>
+              <input matInput [matDatepicker]="picker" name="fecha" placeholder="Danos tu fecha de reserva" required ngModel>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker [startAt]="fecha_inicio"></mat-datepicker>
+            </mat-form-field>
+            &nbsp; &nbsp;
+            <mat-form-field appearance="fill" class="data-pick">
+              <mat-label>Hora de Reserva</mat-label>
+              <input matInput placeholder="Formato HH:MM" name="hora" required ngModel>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" (click)="reservation(reserv,rest.id_res)">Reservar</button>
+          </form>
+          
+          <button mat-raised-button color="warn" (click)="deleteRest(rest.id_res)">Eliminar</button>
+        </div>
+      </mat-card>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Menús">
+    
+    <div *ngIf="is_admin=='S'">
+      <button mat-raised-button color="primary" [routerLink]="['/newDish']">Nuevo Platillo</button>
+      <br><br>
+    </div>
+    <div *ngFor="let men of menus">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="titles">{{men.nombre}}</mat-card-title>
+          <mat-card-subtitle>Restaurante: {{men.res_nom}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="assets/img/platillo.jpg" alt="Platos Geniales">
+        <div>
+          <p style="font-size: 20px;">Precio: $ {{men.precio}}</p>
+          <p>{{men.descripcion}}</p> 
+        </div>
+        <button mat-raised-button color="warn" (click)="deleteMenu(men.id_menu)">Eliminar</button>
+      </mat-card>
+      <br><br>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Mis reservas">
+    <div *ngFor="let res of reservas">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="avatar"></div>
+          <mat-card-title class="titles">Reserva: {{res.fecha}}</mat-card-title>
+          <mat-card-subtitle>Ubicación: {{res.nombre}}</mat-card-subtitle>
+        </mat-card-header>
+        <img src="assets/img/restaurante.jpg" alt="Restaurante Buenísimo">
+        <div>
+            <p style="font-size: 30px;">Hora de Reserva: {{res.hora}}</p>
+        </div><br>
+        <div>
+          <button mat-raised-button color="warn" (click)=deleteResr(res)>Quitar</button>
+        </div>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+</div>

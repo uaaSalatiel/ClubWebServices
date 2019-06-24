@@ -1,0 +1,45 @@
+<mat-card class="newform">
+    <mat-card-header>
+        <mat-card-title class="titles">Registro de Eventos</mat-card-title>
+        <mat-card-subtitle>¡Solo Administradores!</mat-card-subtitle>
+      </mat-card-header>
+
+    <form #nvEv="ngForm">
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Evento</mat-label>
+        <mat-select name="id" required [(ngModel)]="evt.id">
+          <mat-option value="0">Nuevo Evento</mat-option>
+          <mat-option *ngFor="let evts of eventos" (click)="readEvent(evts.id)" [value]="evts.id">
+            {{evts.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Agrega nombre del Evento" name="nombre" required [(ngModel)]="evt.nombre">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Hora</mat-label>
+        <input matInput placeholder="Hora en formato HH:MM" name="time" required [(ngModel)]="evt.time">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Agrega una descripcion" name="descripcion" required [(ngModel)]="evt.descripcion"></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Fecha de Inicio</mat-label>
+        <input matInput [matDatepicker]="picker" name="fecha" placeholder="Danos la fecha de inicio" required [(ngModel)]="evt.fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="registerUpdateEvent(nvEv)">Añadir/Actualizar Evento</button>
+      
+    </form><br>
+
+    <button mat-raised-button color="primary" [routerLink]="['/events']">Regresar</button>
+</mat-card>

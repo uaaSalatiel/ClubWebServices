@@ -1,0 +1,41 @@
+<mat-card class="newform">
+    <mat-card-header>
+        <mat-card-title class="titles">Registro de Actividad</mat-card-title>
+        <mat-card-subtitle>¡Solo Administradores!</mat-card-subtitle>
+      </mat-card-header>
+
+    <form #nvAct="ngForm">
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Actividad</mat-label>
+        <mat-select name="id_act" required [(ngModel)]="acty.id_act">
+          <mat-option value="0">Nueva Actividad</mat-option>
+          <mat-option *ngFor="let act of actividades" (click)="readActivity(act.id_act)" [value]="act.id_act">
+            {{act.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Nombre de la Actividad</mat-label>
+        <input matInput placeholder="Agrega el nombre de actividad" name="nombre" required [(ngModel)]="acty.nombre">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="data-pick">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Agrega tus nombres" name="descripcion" required [(ngModel)]="acty.descripcion"></textarea>
+      </mat-form-field>
+  
+      <mat-checkbox name="lunes" required [(ngModel)]="acty.lunes">Lunes</mat-checkbox>&nbsp;&nbsp;
+      <mat-checkbox name="martes" required [(ngModel)]="acty.martes">Martes</mat-checkbox><br>
+      <mat-checkbox name="miercoles" required [(ngModel)]="acty.miercoles">Miercoles</mat-checkbox>&nbsp;&nbsp;
+      <mat-checkbox name="jueves" required [(ngModel)]="acty.jueves">Jueves</mat-checkbox>&nbsp;&nbsp;
+      <mat-checkbox name="viernes" required [(ngModel)]="acty.viernes">Viernes</mat-checkbox><br>
+      <mat-checkbox name="sabado" required [(ngModel)]="acty.sabado">Sabado</mat-checkbox>&nbsp;&nbsp;
+      <mat-checkbox name="domingo" required [(ngModel)]="acty.domingo">Domingo</mat-checkbox>
+      <br><br>
+      <button mat-raised-button color="primary" (click)="registerUpdateActivity(nvAct)">Añadir/Actualizar Actividad</button>
+      
+    </form><br>
+
+    <button mat-raised-button color="primary" [routerLink]="['/activities']">Regresar</button>
+  </mat-card>

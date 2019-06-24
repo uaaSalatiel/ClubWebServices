@@ -1,0 +1,24 @@
+<mat-card class="login-form">
+  <mat-card-header>
+      <mat-card-title class="titles">Ingresar a ClubApp</mat-card-title>
+      <mat-card-subtitle>¡Solo miembros aprobados!</mat-card-subtitle>
+    </mat-card-header>
+  <form #login="ngForm">
+
+    <mat-form-field appearance="fill" class="data-pick">
+      <mat-label>Correo</mat-label>
+      <input matInput type="text" name="correo" placeholder="Agrega tu correo" ngModel required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="data-pick">
+      <mat-label>Contrasena</mat-label>
+      <input matInput type="text" name="contrasena" type="password" placeholder="Agrega tu contrasena" ngModel required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="loginUser(login)">Ingresar</button>
+    
+  </form>
+
+  ¿No tienes una cuenta?&nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" [routerLink]="['/register']">¡Registrate!</button>
+</mat-card>
